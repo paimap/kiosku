@@ -27,6 +27,13 @@
 2. Import fungsi show_main dari main.views.
 3. Inisialisasi variabel untuk menyimpan nama aplikasi yaitu 'main'.
 4. Membuat list dengan isi path('', show_main, name ='show_main').
+## Melakukan deployment ke PWS terhadap aplikasi yang sudah dibuat
+1. Login ke akun PWS yang sudah dibuat
+2. Create new project dan buat project name dengan nama kiosku
+3. Simpan credential username dan password
+4. Tambahkan URL deployment PWS ke settings.py
+5. Menjalankan instruksi yang ada di bagian project command di PWS
+
 
 # Bagan request client
 
