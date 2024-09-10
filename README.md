@@ -53,9 +53,9 @@ memfasilitasi pemulihan dari kesalahan atau pengembalian ke versi sebelumnya:
 membantu dalam mengelola dan memantau perkembangan proyek
 
 # Framework Django
-	Menurut saya Django memiliki dokumentasi yang lengkap sehingga memudahkan pemula untuk belajar. Selain itu, Django juga memiliki komunitas yang aktif sehingga memudahkan pembelajaran dan pemecahan masalah. Di Fasilkom sendiri python merupakan bahasa pemrograman di DDP 1 sehingga untuk mempelajari Django sebagai mahasiswa Fasilkom tidak butuh banyak penyesuaian.
+Menurut saya Django memiliki dokumentasi yang lengkap sehingga memudahkan pemula untuk belajar. Selain itu, Django juga memiliki komunitas yang aktif sehingga memudahkan pembelajaran dan pemecahan masalah. Di Fasilkom sendiri python merupakan bahasa pemrograman di DDP 1 sehingga untuk mempelajari Django sebagai mahasiswa Fasilkom tidak butuh banyak penyesuaian.
 
 # Django disebut ORM
-	Django disebut ORM karena Django memetakan langsung basis data ke object pada Python sehingga tidak diperlukan lagi menulis query SQL secara langsung.
+Django disebut ORM karena Django memetakan langsung basis data ke object pada Python sehingga tidak diperlukan lagi menulis query SQL secara langsung.
 
 
