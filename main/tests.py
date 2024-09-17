@@ -1,7 +1,7 @@
 # Create your tests here.
 from django.test import TestCase, Client
 from django.utils import timezone
-from .models import MoodEntry
+from .models import StockEntry
 
 class mainTest(TestCase):
     def test_main_url_is_exist(self):
@@ -18,7 +18,7 @@ class mainTest(TestCase):
 
     def test_strong_mood_user(self):
         now = timezone.now()
-        mood = MoodEntry.objects.create(
+        mood = StockEntry.objects.create(
           mood="LUMAYAN SENANG",
           time = now,
           feelings = "senang sih, cuman tadi baju aku basah kena hujan :(",

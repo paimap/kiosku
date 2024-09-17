@@ -1,8 +1,45 @@
-<h1>KiosKu</h1>
+ {% extends 'base.html' %}
+ {% block content %}
+ <h1>Kiosku</h1>
 
-<h3>Nama </h3>
-<p>{{ nama }}<p>
-<h3>NPM</h3>
-<p>{{ npm }}<p>
-<h3>Kelas</h3>
-<p>{{ kelas }}<p>
+ <h5>NPM: </h5>
+ <p>{{ npm }}<p>
+
+ <h5>Name:</h5>
+ <p>{{ nama }}</p>
+
+ <h5>Class:</h5>
+ <p>{{ kelas }}</p>
+
+{% if not stock_entry %}
+<p>Belum ada data stock pada kiosku.</p>
+{% else %}
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Time</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>quantity</th>
+  </tr>
+
+  {% comment %} Berikut cara memperlihatkan data mood di bawah baris ini 
+  {% endcomment %} 
+  {% for stock in stock_entry %}
+  <tr>
+    <td>{{stock.name}}</td>
+    <td>{{stock.time}}</td>
+    <td>{{stock.description}}</td>
+    <td>{{stock.price}}</td>
+    <td>{{stock.quantity}} </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+<br />
+
+<a href="{% url 'main:create_stock_entry' %}">
+  <button>Add New Stock Entry</button>
+</a>
+ {% endblock content %}
