@@ -110,4 +110,50 @@ Kita membutuhkan csrf_token karena Django memberikan csrf_token untuk memastikan
 ![Alt text](xml_with_id.png)
 
 
+# Tugas 4
+# Perbedaan antara HttpResponseRedirect() dan redirect()
+HttpResponseRedirect adalah class bawaan Django yang secara eksplisit membuat HTTP response dengan kode status 302 (redirect) dan header "Location" yang mengarah ke URL baru. Sedangkan redirect adalah fungsi shortcut yang disediakan oleh Django untuk mempermudah pengalihan dan akan secara otomatis menggunakan HttpResponseRedirect() di belakang layar.
+# Cara Kerja Penghubungan Model Product dengan User
+Menghubungkan model Product dengan model User dalam Django biasanya melibatkan penggunaan relasi ForeignKey atau ManyToManyField, tergantung pada hubungan yang ingin dibentuk antara kedua model tersebut.
+# Perbedaan antara Authentication dan Authorization
+Authentication adalah proses verifikasi identitas pengguna seperti melalui username dan password. Sedangkan authorization adalah proses menentukan hak akses pengguna setelah mereka terautentikasi seperti izin untuk mengakses halaman admin atau mengubah data. Django mengimplementasikan authentication melalui sistem User dan Session, sedangkan authorization melalui permissions dan groups.
+# Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+Django mengingat pengguna yang login dengan menggunakan session cookies yang menyimpan session ID, menghubungkan pengguna dengan data sesi di server. Cookies digunakan untuk banyak hal, termasuk autentikasi, menyimpan preferensi pengguna, dan pelacakan aktivitas pengguna. Tidak semua cookies aman, sehingga cookies harus dilindungi dengan pengaturan seperti Secure, HttpOnly, dan CSRF protection untuk mencegah serangan dan kebocoran data.
+# Implementasi Checklist
+## Implementasi Fungsi Register
+1. Tambahkan import UserCreationForm dan messages pada bagian paling atas views.py.
+2. Tambahkan fungsi register yang berfungsi untuk menghasilkan formulir registrasi secara otomatis dan menghasilkan akun pengguna ketika data di-submit dari form ke dalam views.py.
+3. Buatlah berkas HTML baru dengan nama register.html pada direktori main/templates. Isi register.html dengan html yang menampilkan form register.
+4. Impor fungsi yang sudah dibuat ke urls.py
+5. Tambahkan path url ke dalam urlpatterns untuk mengakses fungsi yang sudah diimpor tadi.
+
+## Implementasi Fungsi Login
+1. Tambahkan import authenticate, login, dan AuthenticationForm pada bagian paling atas pada views.py.
+2. Tambahkan fungsi login_user yang berfungsi untuk mengautentikasi pengguna yang ingin login ke dalam views.py.
+3. Buatlah berkas HTML baru dengan nama register.html pada direktori main/templates. Isi register.html dengan html yang menampilkan form login.
+4. Impor fungsi yang sudah dibuat ke urls.py
+5. Tambahkan path url ke dalam urlpatterns untuk mengakses fungsi yang sudah diimpor tadi.
+
+## Implementasi Fungsi Logout
+1. Tambahkan import logout pada bagian paling atas pada views.py.
+2. Tambahkan fungsi logout_user yang berfungsi untuk melakukan mekanisme logout ke dalam fungsi views.py.
+3. Tambahkan button logout pada main.html
+4. Impor fungsi yang sudah dibuat ke urls.py
+5. Tambahkan path url ke dalam urlpatterns untuk mengakses fungsi yang sudah diimpor tadi.
+
+## Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
+![Alt text](akun_dan_dummy_1.png)
+![Alt text](akun_dan_dummy_2.png)
+
+## Menghubungkan model Product dengan User.
+1. Tambahkan import from django.contrib.auth.models import User pada bagian paling atas pada models.py.
+2. Pada model StockEntry yang sudah dibuat, tambahkan potongan kode user = models.ForeignKey(User, on_delete=models.CASCADE).
+3. Ubah value dari mood_entries menjadi MoodEntry.objects.filter(user=request.user) dan context pada fungsi show_main menjadi 'name': request.user.username,.
+4. Simpan semua perubahan, dan lakukan migrasi model dengan python manage.py makemigrations
+5. Lakukan python manage.py migrate untuk mengaplikasikan migrasi yang dilakukan pada poin sebelumnya.
+6. Tambahkan sebuah import baru pada settings.py yang ada pada subdirektori mental_health_tracker yaitu import os.
+7. Ganti variabel DEBUG dari berkas settings.py menjadi seperti ini. PRODUCTION = os.getenv("PRODUCTION", False) DEBUG = not PRODUCTION
+
+
+
 
