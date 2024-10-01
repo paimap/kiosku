@@ -3,6 +3,8 @@ from main.views import show_main, create_stock_entry, show_xml, show_json, show_
 from main.views import register
 from main.views import login_user
 from main.views import logout_user
+from main.views import edit_stock
+from main.views import delete_stock
 
 app_name = 'main'
 
@@ -16,4 +18,6 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
+    path('edit-stock/<uuid:id>', edit_stock, name='edit_stock'),
+    path('delete/<uuid:id>', delete_stock, name='delete_stock'),
 ]

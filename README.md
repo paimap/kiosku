@@ -154,6 +154,66 @@ Django mengingat pengguna yang login dengan menggunakan session cookies yang men
 6. Tambahkan sebuah import baru pada settings.py yang ada pada subdirektori mental_health_tracker yaitu import os.
 7. Ganti variabel DEBUG dari berkas settings.py menjadi seperti ini. PRODUCTION = os.getenv("PRODUCTION", False) DEBUG = not PRODUCTION
 
+# Tugas 5
+# Urutan Prioritas Pengambilan CSS Selector
+1. Inline Style
+Style yang ditentukan langsung pada elemen HTML menggunakan attribute style.
+2. ID Selector
+Selector yang menggunakan ID elemen dan setiap elemen harus unik.
+3. Class Selector 
+Selector yang menggunakan kelas
+4. Element Selector
+Selector yang menggunakan nama elemen HTML
+5. Universal Selector
+Selector yang ditandai dengan *. Selector ini akan diterapkan pada seluruh elemen
+
+# Responsive Design
+desain responsif akan memudahkan pengguna untuk melakukan aktivitas pada aplikasi web kita di berbagai perangkat seperti desktop, tablet, dan smartphone. Desain responsif memungkinkan aplikasi web untuk menyesuaikan ukuran dan resolusi sehingga dapat dilihat tanpa melakukan zoom.
+
+# Margin, Border, dan padding
+## Margin 
+Margin adalah ruang di luar kotak untuk membuat jarak antara kotak dan elemen lainnya.
+## Border
+Border adalah garis yang mengelilingi kotak.
+## Padding
+Padding adalah ruang di dalam kotak, berada di antara konten dan border.
+
+# Flex Box dan Grid Layout
+## Flex Box
+Flexbox adalah layout CSS yang dirancang untuk menyusun elemen dalam satu dimensi secara horizontal atau vertikal. Dengan menggunakan flexbox, kita dapat mengatur bagaimana elemen di dalam kontainer berubah terhadap ukuran ruang yang tersedia.
+## Grid Layout
+Grid Layout adalah layout CSS yang berguna untuk menyusun elemen dalam dua dimensi (baris dan kolom). Grid layout dapat membuat desain kompleks yang terstruktur, dan mengatur penempatan elemen dalam grid.
+
+# Implementasi Checklist
+## Fungsi Mengedit
+1. buat fungsi baru bernama edit_stock yang menerima parameter request dan id di views.py
+2. Buatlah berkas HTML baru dengan nama edit_stock.html pada subdirektori main/templates dan isi berkas tersebut.
+3. Buka urls.py yang berada pada direktori main dan import fungsi edit_stock yang sudah dibuat.
+4. Tambahkan path url ke dalam urlpatterns untuk mengakses fungsi yang sudah diimpor tadi.
+5. Tambahkan button yang memanggil edit_stock.
+
+## Fungsi Menghapus
+1. buat fungsi baru bernama delete_stock yang menerima parameter request dan id di views.py
+2. Buatlah berkas HTML baru dengan nama delete_stock.html pada subdirektori main/templates dan isi berkas tersebut.
+3. Buka urls.py yang berada pada direktori main dan import fungsi delete_stock yang sudah dibuat.
+4. Tambahkan path url ke dalam urlpatterns untuk mengakses fungsi yang sudah diimpor tadi.
+5. Tambahkan button yang memanggil delete_stock.
+
+## Kostumisasi Desain pada HTML yang Telah dibuat
+1. Buatlah berkas HTML baru dengan nama navbar.html pada folder templates/ di root directory. Isi berkas navbar.html sesuai dengan desain yang diinginkan.
+2. tautkan navbar tersebut ke dalam main.html, create_stock_entry.html, dan edit_stock.html yang berada di subdirektori main/templates/ dengan menggunakan tags include.
+3. Buatlah file global.css di /static/css pada root directory dan tambahkan kelas custom atau style css yang sudah didefinisikan.
+4. Hubungkan global.css dan script Tailwind ke base.html.
+5. Ubah login.html sesuai dengan desain yang ingin dibentuk.
+6. Ubah halaman register.html sesuai dengan desain yang ingin dibentuk.
+7. Styling main.html dengan menambah card_info.html dan card_stock.html dan tambahkan button edit dan hapus lalu buat kondisi jika stock kosong.
+8. Ubah edit_stock.html sesuai dengan desain yang ingin dibentuk.
+9. Ubah create_stock.html sesuai dengan desain yang ingin dibentuk.
+
+
+
+
+
 
 
 

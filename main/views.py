@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from main.forms import StockEntryForm
 from main.models import StockEntry
 from django.http import HttpResponse
@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 import datetime
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseRedirect
 from django.urls import reverse
 
 # Create your views here.
@@ -88,3 +88,27 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def edit_stock(request, id):
+    print(f"Received ID: {id}")
+    # Get stock entry berdasarkan id
+    stock = StockEntry.objects.get(pk = id)
+
+    # Set stock entry sebagai instance dari form
+    form = StockEntryForm(request.POST or None, instance=stock)
+
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_stock.html", context)
+
+def delete_stock(request, id):
+    # Get stock berdasarkan id
+    stock = StockEntry.objects.get(pk = id)
+    # Hapus stock
+    stock.delete()
+    # Kembali ke halaman awal
+    return HttpResponseRedirect(reverse('main:show_main'))
