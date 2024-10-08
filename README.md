@@ -81,13 +81,13 @@ Kita membutuhkan csrf_token karena Django memberikan csrf_token untuk memastikan
 # Implementasi Checklist
 
 ## Membuat input form untuk menambahkan objek model pada app sebelumnya.
-1. Buat berkas baru pada direktori main dengan nama forms.py untuk membuat struktur form yang dapat menerima data Mood Entry baru.
+1. Buat berkas baru pada direktori main dengan nama forms.py untuk membuat struktur form yang dapat menerima data Stock Entry baru.
 2. Buka berkas views.py yang ada pada direktori main dan tambahkan from django.shortcuts import render, redirect ; from main.forms import StockEntryForm ; from main.models import StockEntry pada bagian paling atas.
 3. buat fungsi baru dengan nama create_stock_entry yang menerima parameter request.
-4. Buka urls.py yang ada pada direktori main dan import fungsi create_mood_entry yang sudah dibuat tadi.
+4. Buka urls.py yang ada pada direktori main dan import fungsi create_stock_entry yang sudah dibuat tadi.
 5. Tambahkan path URL ke dalam variabel urlpatterns pada urls.py di main untuk mengakses fungsi yang sudah di-import pada poin sebelumnya.
 6. Buat berkas HTML baru dengan nama create_stock_entry.html pada direktori main/templates. Isi create_stock_entry.html dengan kode berikut.
-7. Buka main.html dan tambahkan kode untuk menampilkan data mood dalam bentuk tabel serta tombol "Add New Mood Entry" yang akan redirect ke halaman form di dalam {% block content %}. 
+7. Buka main.html dan tambahkan kode untuk menampilkan data stock dalam bentuk tabel serta tombol "Add New Stock Entry" yang akan redirect ke halaman form di dalam {% block content %}. 
 
 ## Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID.
 1. Buka views.py yang ada pada direktori main dan tambahkan import HttpResponse dan Serializer pada bagian paling atas.
@@ -99,7 +99,7 @@ Kita membutuhkan csrf_token karena Django memberikan csrf_token untuk memastikan
 12. Tambahkan return function berupa HttpResponse yang berisi parameter data hasil query yang sudah diserialisasi menjadi JSON atau XML dan parameter content_type dengan value "application/xml" (untuk format XML) atau "application/json" (untuk format JSON).
 
 ## Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
-1. Buka urls.py yang ada pada direktori main dan import fungsi yang sudah dibuat tadi (from main.views import show_main, create_mood_entry, show_xml, show_json, show_xml_by_id, show_json_by_id).
+1. Buka urls.py yang ada pada direktori main dan import fungsi yang sudah dibuat tadi (from main.views import show_main, create_stock_entry, show_xml, show_json, show_xml_by_id, show_json_by_id).
 2. Tambahkan path url ke dalam urlpatterns untuk mengakses fungsi yang sudah diimpor tadi (path('', show_main, name='show_main'), path('create-stock-entry', create_stock_entry, name='create_stock_entry'), path('xml/', show_xml, name='show_xml'), path('json/', show_json, name='show_json'), path('xml/<str:id>/', show_xml_by_id, name='show_xml_by_id'), path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),).
 
 # Akses Menggunakan Postman
@@ -148,7 +148,7 @@ Django mengingat pengguna yang login dengan menggunakan session cookies yang men
 ## Menghubungkan model Product dengan User.
 1. Tambahkan import from django.contrib.auth.models import User pada bagian paling atas pada models.py.
 2. Pada model StockEntry yang sudah dibuat, tambahkan potongan kode user = models.ForeignKey(User, on_delete=models.CASCADE).
-3. Ubah value dari mood_entries menjadi MoodEntry.objects.filter(user=request.user) dan context pada fungsi show_main menjadi 'name': request.user.username,.
+3. Ubah value dari stock_entries menjadi StockEntry.objects.filter(user=request.user) dan context pada fungsi show_main menjadi 'name': request.user.username,.
 4. Simpan semua perubahan, dan lakukan migrasi model dengan python manage.py makemigrations
 5. Lakukan python manage.py migrate untuk mengaplikasikan migrasi yang dilakukan pada poin sebelumnya.
 6. Tambahkan sebuah import baru pada settings.py yang ada pada subdirektori mental_health_tracker yaitu import os.
@@ -209,6 +209,37 @@ Grid Layout adalah layout CSS yang berguna untuk menyusun elemen dalam dua dimen
 7. Styling main.html dengan menambah card_info.html dan card_stock.html dan tambahkan button edit dan hapus lalu buat kondisi jika stock kosong.
 8. Ubah edit_stock.html sesuai dengan desain yang ingin dibentuk.
 9. Ubah create_stock.html sesuai dengan desain yang ingin dibentuk.
+
+# Tugas 5
+# Manfaat JavaScript dalam Pengembangan Aplikasi Web
+JavaScript bermanfaat untuk membangun aplikasi web yang responsif, interaktif, dan kaya fitur. 
+# Fungsi Await ketika Menggunakan Fetch
+Await berfungsi untuk menunggu hingga promise selesai sebelum melanjutkan ke baris kode berikutnya. Jika await tidak digunakan, hasil fetch() akan berupa promise yang belum diselesaikan, sehingga data yang diharapkan belum siap digunakan.
+# Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+Kita menggunakan @csrf_exempt pada view yang akan digunakan untuk AJAX POST agar Django tidak memeriksa token CSRF, sehingga mencegah terjadinya kesalahan 403 Forbidden.
+# pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+Pembersihan harus selalu dilakukan di backend karena server memiliki kendali penuh atas proses tersebut dan tidak bisa dimanipulasi oleh pengguna sehingga memberikan perlindungan tambahan, menjaga integritas data, dan memastikan bahwa sistem aman dari serangan atau manipulasi data.
+
+# Implementasi Checklist
+## Membuat Fungsi untuk Menambah Stock dengan AJAX
+1. Tambahkan impor csrf_exempt dan require_POST ke views.py
+2. Buat fungsi add_stock_entry_ajax yang menerima parameter request 
+3. import fungsi yang telah dibuat ke views.py
+4. tambahkan path url ke urlpatterns
+
+## Menampilkan Data Stock Entry dengan fetch() API
+1. pada views.py ubah data menjadi data = StockEntry.objects.filter(user=request.user)
+2. Ubah block conditional pada stock entry menjadi < div id="stock_entry_cards"></ div>
+3. buatlah fungsi baru pada block < script > tersebut dengan nama getStockEntries
+4. Buat fungsi baru pada block < script >  dengan nama refreshStockEntries yang digunakan untuk me-refresh data stock secara asinkronus.
+
+##  Membuat Modal Sebagai Form untuk Menambahkan Stock
+1. Ubah bagian tombol Add New Stock Entry menjadi < a href="{% url 'main:create_stock_entry' %}" class="bg-indigo-400 hover:bg-indigo-400 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 mx-4 "> Add New Stock Entry < /a >. 
+2. Tambahkan tombol baru untuk melakukan penambahan data dengan < button data-modal-target="crudModal" data-modal-toggle="crudModal" class="btn bg-indigo-700 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105" onclick="showModal();"> Add New Stock Entry by AJAX </ button>
+
+## Menambahkan Data Stock dengan AJAX
+1. Buatlah fungsi baru pada block < script > dengan nama addStockEntry.
+2. Tambahkan sebuah event listener pada form yang ada di modal untuk menjalankan fungsi addStockEntry().
 
 
 

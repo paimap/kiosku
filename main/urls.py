@@ -5,6 +5,7 @@ from main.views import login_user
 from main.views import logout_user
 from main.views import edit_stock
 from main.views import delete_stock
+from main.views import add_stock_entry_ajax
 
 app_name = 'main'
 
@@ -20,4 +21,5 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('edit-stock/<uuid:id>', edit_stock, name='edit_stock'),
     path('delete/<uuid:id>', delete_stock, name='delete_stock'),
+    path('create-stock-entry-ajax', add_stock_entry_ajax, name='add_stock_entry_ajax'),
 ]
